@@ -1,0 +1,5 @@
+type Query {
+    accountsAll: [Account!]
+    account(username: String = null): Account
+    accounts(id: Long): Account
+}
