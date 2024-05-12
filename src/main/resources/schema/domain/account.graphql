@@ -1,10 +1,11 @@
 type Account {
-    id: Long!
+    id: UUID!
     role: AccountRole!
     username: String!
     #    password: String!
     nickname: String!
     avatarUrl: String!
+    devices: [IotDevice!]!
 }
 
 enum AccountRole {

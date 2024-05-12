@@ -1,16 +1,23 @@
 package com.github.cctvapi.domain.device.persistence
 
+import com.github.cctvapi.common.persistence.BaseTimeEntity
+import com.github.cctvapi.domain.account.persistence.Account
 import jakarta.persistence.*
-import org.hibernate.annotations.GenericGenerator
 import java.util.*
 
 @Entity
 @Table(name = "iot_device")
 class IotDevice (
 
-    @Id
-    @GeneratedValue(generator = "uuid2")
-    @GenericGenerator(name="uuid2", strategy="uuid2")
-    @Column(columnDefinition="BINARY(16)")
-    val id: UUID? = null
-)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "account_id", nullable = false)
+    val owner: Account,
+
+    @OneToOne(mappedBy = "device", cascade = [CascadeType.REMOVE])
+    val live: Live? = null,
+
+    @Column(nullable = true)
+    val accessKey: String? = null,
+
+    id: UUID? = null,
+) : BaseTimeEntity(id)

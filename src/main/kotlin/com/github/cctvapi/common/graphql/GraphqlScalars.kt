@@ -17,4 +17,9 @@ class GraphqlScalars {
     fun addDateTime(builder: RuntimeWiring.Builder): RuntimeWiring.Builder {
         return builder.scalar(ExtendedScalars.DateTime)
     }
+
+    @DgsRuntimeWiring
+    fun addUUID(builder: RuntimeWiring.Builder): RuntimeWiring.Builder {
+        return builder.scalar(ExtendedScalars.UUID)
+    }
 }

@@ -1,11 +1,11 @@
 package com.github.cctvapi.domain.account.persistence
 
-import com.github.cctvapi.common.entity.BaseTimeEntity
+import com.github.cctvapi.common.persistence.BaseTimeEntity
 import jakarta.persistence.*
 import java.util.UUID
 
 @Entity
-@Table(name="account", indexes=[
+@Table(name = "account", indexes = [
 //    Index(name="idx_username", columnList="username", unique=true),
     Index(name="idx_username", columnList="username"),
 ])

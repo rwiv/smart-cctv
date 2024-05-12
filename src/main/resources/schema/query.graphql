@@ -1,5 +1,9 @@
 type Query {
-    accountsAll: [Account!]
+    accountsAll: [Account!]!
     account(username: String = null): Account
     accounts(id: Long): Account
+
+    iotDevices(ownerId: UUID): [IotDevice!]!
+
+    videos(deviceId: UUID): [Video!]!
 }

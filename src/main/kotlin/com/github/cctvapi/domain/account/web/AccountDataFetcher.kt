@@ -4,6 +4,8 @@ import com.github.cctvapi.domain.account.business.AccountService
 import com.github.cctvapi.domain.account.business.data.AccountCreation
 import com.github.cctvapi.domain.account.business.data.AccountResponse
 import com.github.cctvapi.domain.account.persistence.Account
+import com.github.cctvapi.domain.device.persistence.IotDevice
+import com.github.cctvapi.domain.device.persistence.IotDeviceRepository
 import com.netflix.graphql.dgs.*
 import org.springframework.security.core.Authentication
 import java.util.*
@@ -11,6 +13,7 @@ import java.util.*
 @DgsComponent
 class AccountDataFetcher(
     private val accountService: AccountService,
+    private val iotDeviceRepository: IotDeviceRepository,
 ) {
 
     @DgsQuery
@@ -38,5 +41,11 @@ class AccountDataFetcher(
     @DgsMutation
     fun createAccount(creation: AccountCreation): Account {
         return accountService.create(creation)
+    }
+
+    @DgsData(parentType = "Account")
+    fun devices(dfe: DgsDataFetchingEnvironment): List<IotDevice> {
+        val account = dfe.getSource<Account>()
+        return iotDeviceRepository.findByOwner(account)
     }
 }

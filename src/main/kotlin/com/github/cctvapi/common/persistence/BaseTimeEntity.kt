@@ -1,4 +1,4 @@
-package com.github.cctvapi.common.entity
+package com.github.cctvapi.common.persistence
 
 import jakarta.persistence.Column
 import jakarta.persistence.EntityListeners
@@ -11,9 +11,7 @@ import java.util.*
 
 @MappedSuperclass
 @EntityListeners(AuditingEntityListener::class)
-class BaseTimeEntity(
-    id: UUID? = null,
-) : BaseEntity(id) {
+class BaseTimeEntity(id: UUID?) : BaseEntity(id) {
 
     @CreatedDate
     @Column(nullable = false, updatable = false)
