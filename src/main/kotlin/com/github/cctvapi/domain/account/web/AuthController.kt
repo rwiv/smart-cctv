@@ -1,4 +1,4 @@
-package com.github.cctvapi.domain.account.api
+package com.github.cctvapi.domain.account.web
 
 import com.github.cctvapi.domain.account.business.data.AccountResponse
 import com.github.cctvapi.domain.account.business.data.AccountCreation

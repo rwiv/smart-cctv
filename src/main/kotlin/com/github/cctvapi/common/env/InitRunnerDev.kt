@@ -4,6 +4,8 @@ import com.github.cctvapi.domain.account.business.AccountService
 import com.github.cctvapi.domain.account.business.data.AccountCreation
 import com.github.cctvapi.domain.account.persistence.Account
 import com.github.cctvapi.domain.account.persistence.AccountRole
+import com.github.cctvapi.domain.device.persistence.IotDevice
+import com.github.cctvapi.domain.device.persistence.IotDeviceRepository
 import org.springframework.boot.ApplicationArguments
 import org.springframework.boot.ApplicationRunner
 import org.springframework.context.annotation.Profile
@@ -13,22 +15,27 @@ import org.springframework.stereotype.Component
 @Profile("dev")
 class InitRunnerDev(
     private val accountService: AccountService,
+    private val iorDeviceRepository: IotDeviceRepository,
 ) : ApplicationRunner {
 
     override fun run(args: ApplicationArguments?) {
-        if (isInit()) {
+        if (alreadyInitialized()) {
             return
         }
 
         val users = ArrayList<Account>()
         users.add(createAdmin())
         users.addAll(createUsers(1, 5))
+
+        iorDeviceRepository.save(IotDevice())
+        iorDeviceRepository.save(IotDevice())
+        iorDeviceRepository.save(IotDevice())
     }
 
-    private fun isInit(): Boolean {
-        val user = accountService.findById(1L)
+    private fun alreadyInitialized(): Boolean {
+        val user = accountService.findAll()
 
-        return user != null
+        return user.isNotEmpty()
     }
 
     private fun createAdmin(): Account {

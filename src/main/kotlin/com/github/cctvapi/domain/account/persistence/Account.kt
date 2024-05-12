@@ -1,17 +1,15 @@
 package com.github.cctvapi.domain.account.persistence
 
+import com.github.cctvapi.common.entity.BaseTimeEntity
 import jakarta.persistence.*
+import java.util.UUID
 
 @Entity
-@Table(name = "account", indexes = [
-//    Index(name = "idx_username", columnList = "username", unique = true),
-    Index(name = "idx_username", columnList = "username"),
+@Table(name="account", indexes=[
+//    Index(name="idx_username", columnList="username", unique=true),
+    Index(name="idx_username", columnList="username"),
 ])
 class Account(
-
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "account_id")
-    val id: Long?,
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
@@ -28,4 +26,6 @@ class Account(
 
     @Column
     val avatarUrl: String,
-)
+
+    id: UUID?,
+) : BaseTimeEntity(id)

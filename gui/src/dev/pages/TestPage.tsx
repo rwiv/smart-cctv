@@ -12,10 +12,12 @@ export function TestPage() {
     }
 
     const hls = new Hls({
-      startLevel: 100,
+      // startLevel을 -1로 설정해야 최초 play 시 bandwidth에 맞는 화질을 채택함
+      startLevel: -1,
       // liveDurationInfinity: true
     });
-    const liveUrl1 = "https://cph-p2p-msl.akamaized.net/hls/live/2000341/test/master.m3u8";
+    // const liveUrl1 = "https://cph-p2p-msl.akamaized.net/hls/live/2000341/test/master.m3u8";
+    const liveUrl1 = "http://localhost:8080/hls/hello.m3u8";
     // const m3u8Url = "https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8";
     hls.loadSource(liveUrl1);
     hls.attachMedia(ref.current as any);

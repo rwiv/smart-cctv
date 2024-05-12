@@ -4,7 +4,7 @@ import com.github.cctvapi.domain.account.persistence.Account
 import com.github.cctvapi.domain.account.persistence.AccountRole
 
 data class AccountResponse(
-    val id: Long,
+    val id: String,
     val role: AccountRole,
     val username: String,
     val nickname: String,
@@ -12,7 +12,7 @@ data class AccountResponse(
 ) {
     companion object {
         fun of(account: Account) = AccountResponse(
-            account.id!!,
+            account.id!!.toString(),
             account.role,
             account.username,
             account.nickname,

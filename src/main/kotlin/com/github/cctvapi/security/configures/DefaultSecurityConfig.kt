@@ -34,6 +34,7 @@ class DefaultSecurityConfig(
     )
     val ignoreList = listOf(
         "/avatars/**",
+        "/h2-console/**"
     )
 
     private fun wrapMatcher(list: List<String>): Array<AntPathRequestMatcher> {
@@ -87,7 +88,6 @@ class DefaultSecurityConfig(
         return WebSecurityCustomizer { web: WebSecurity -> web
             .ignoring()
             .requestMatchers(*wrapMatcher(ignoreList))
-            .requestMatchers("/h2-console")
         }
     }
 }

@@ -7,6 +7,8 @@ import org.springframework.data.domain.PageRequest
 import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
+import java.util.*
+import kotlin.collections.ArrayList
 import kotlin.jvm.optionals.getOrNull
 
 @Service
@@ -18,12 +20,12 @@ class AccountService(
     @Transactional
     fun create(creation: AccountCreation): Account {
         val tbc = Account(
-            null,
             creation.role,
             creation.username,
             passwordEncoder.encode(creation.password),
             creation.nickname,
             "/avatars/${getRandInt()}.svg",
+            null,
         )
         return accountRepository.save(tbc)
     }
@@ -44,7 +46,7 @@ class AccountService(
         return accountRepository.findAllBy(PageRequest.of(page, size)).content
     }
 
-    fun findById(id: Long): Account? {
+    fun findById(id: UUID): Account? {
         return accountRepository.findById(id).getOrNull()
     }
 
