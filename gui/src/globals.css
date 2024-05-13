@@ -4,9 +4,10 @@
 @tailwind components;
 @tailwind utilities;
 
-html {
+body {
   font-size: 100%;
   font-family: "Inter", "Noto Sans KR", sans-serif;
+  color: #DFE2EA;
 }
 
 @layer base {

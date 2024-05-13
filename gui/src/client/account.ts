@@ -3,23 +3,23 @@ import {consts} from "@/configures/consts.ts";
 import {AccountCreation} from "@/graphql/types.ts";
 import {post} from "@/lib/web/http.ts";
 
-export const accountColumns = gql`
-    fragment accountColumns on Account {
-        id
-        role
-        username
-        nickname
-        avatarUrl
-    }
+export const ACCOUNT_FIELDS = gql`
+  fragment AccountFields on Account {
+    id
+    role
+    username
+    nickname
+    avatarUrl
+  }
 `;
 
-export const myInfoQL = gql`
-    query MyInfo {
-        account {
-            ...accountColumns
-        }
+export const MY_INFO = gql`
+  query MyInfo {
+    account {
+      ...AccountFields
     }
-    ${accountColumns}
+  }
+  ${ACCOUNT_FIELDS}
 `;
 
 export function signup(creation: AccountCreation) {
@@ -45,9 +45,9 @@ export function logout() {
 
 export const getAccountByUsername = gql`
   query GetAccountByUsername($username: String!) {
-      account(username: $username) {
-          ...accountColumns
-      }
+    account(username: $username) {
+      ...AccountFields
+    }
   }
-  ${accountColumns}
+  ${ACCOUNT_FIELDS}
 `;

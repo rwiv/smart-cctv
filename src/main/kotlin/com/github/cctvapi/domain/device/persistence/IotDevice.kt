@@ -13,6 +13,9 @@ class IotDevice (
     @JoinColumn(name = "account_id", nullable = false)
     val owner: Account,
 
+    @Column(nullable = false)
+    val name: String,
+
     @OneToOne(mappedBy = "device", cascade = [CascadeType.REMOVE])
     val live: Live? = null,
 

@@ -1,18 +1,16 @@
-import {mq} from "@/lib/style/mediaQueries.ts";
-import {containerStyle, flexStyle} from "@/styles/globalStyles.ts";
-
-const left = mq.m_all(2,2,3,3,3,3);
-const right = mq.m_all(10,10,9, 9,9,9);
+import {BG_BASE} from "@/styles/colors.ts";
+import {LeftSidebar} from "@/components/layouts/LeftSidebar.tsx";
+import {DeviceContent} from "@/components/device/DeviceContent.tsx";
 
 export function IndexPage() {
 
   return (
-    <div css={containerStyle}>
-      <div css={[left, flexStyle]}>
-        hello
+    <div css={{ display: "flex", height: "100vh", background: BG_BASE }}>
+      <div className="flex" css={{width: "19rem"}}>
+        <LeftSidebar css={{margin: "0rem 1rem"}} />
       </div>
-      <div css={[right, flexStyle, {background: "#eeeeee"}]}>
-        hello
+      <div className="flex w-full m-3">
+        <DeviceContent />
       </div>
     </div>
   )

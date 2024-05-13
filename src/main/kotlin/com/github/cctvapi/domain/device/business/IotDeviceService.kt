@@ -1,6 +1,5 @@
 package com.github.cctvapi.domain.device.business
 
-import com.github.cctvapi.common.error.exception.NotFoundException
 import com.github.cctvapi.domain.account.persistence.AccountRepository
 import com.github.cctvapi.domain.device.business.data.IotDeviceCreation
 import com.github.cctvapi.domain.device.persistence.IotDevice
@@ -16,7 +15,7 @@ class IotDeviceService(
 
     fun create(creation: IotDeviceCreation): IotDevice {
         val owner = accountRepository.findByIdNotNull(creation.ownerId)
-        return iotDeviceRepository.save(IotDevice(owner))
+        return iotDeviceRepository.save(IotDevice(owner, creation.name))
     }
 
     fun findByOwnerId(ownerId: UUID): List<IotDevice> {

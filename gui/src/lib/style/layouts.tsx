@@ -1,11 +1,15 @@
 import {ReactNode} from "react";
 
-interface Props {
+interface BasicProps {
   children: ReactNode;
   className?: string;
 }
 
-function Flex({ children, className }: Props) {
+interface StackProps extends BasicProps {
+  gap?: number;
+}
+
+function Flex({ children, className }: BasicProps) {
   return (
     <div className={className} css={{ display: "flex" }}>
       {children}
@@ -13,32 +17,32 @@ function Flex({ children, className }: Props) {
   )
 }
 
-function VStack({ children, className }: Props) {
+function VStack({ children, className, gap = 8 }: StackProps) {
   return (
     <div className={className} css={{
       display: "flex",
       flexDirection: "column",
-      gap: 8,
+      gap,
     }}>
       {children}
     </div>
   )
 }
 
-function HStack({ children, className }: Props) {
+function HStack({ children, className, gap = 8 }: StackProps) {
   return (
     <div className={className} css={{
       display: "flex",
       flexDirection: "row",
       flexWrap: "wrap",
-      gap: 8,
+      gap,
     }}>
       {children}
     </div>
   )
 }
 
-function Center({ children, className }: Props) {
+function Center({ children, className }: BasicProps) {
   return (
     <div className={className} css={{
       display: "flex",

@@ -14,14 +14,16 @@ export type Scalars = {
   Float: { input: number; output: number; }
   DateTime: { input: string; output: string; }
   Long: { input: number; output: number; }
+  UUID: { input: string; output: string; }
   _FieldSet: { input: any; output: any; }
 };
 
 export type Account = {
   __typename?: 'Account';
   avatarUrl: Scalars['String']['output'];
-  id: Scalars['Long']['output'];
-  /**     password: String! */
+  devices: Array<IotDevice>;
+  id: Scalars['UUID']['output'];
+  /**   password: String! */
   nickname: Scalars['String']['output'];
   role: AccountRole;
   username: Scalars['String']['output'];
@@ -278,9 +280,39 @@ export enum ErrorType {
   Unknown = 'UNKNOWN'
 }
 
+export type IotDevice = {
+  __typename?: 'IotDevice';
+  accessKey?: Maybe<Scalars['String']['output']>;
+  id: Scalars['UUID']['output'];
+  live?: Maybe<Live>;
+  name: Scalars['String']['output'];
+  owner: Account;
+};
+
+export type IotDeviceCreation = {
+  name: Scalars['String']['input'];
+  ownerId: Scalars['UUID']['input'];
+};
+
+export type Live = {
+  __typename?: 'Live';
+  device: IotDevice;
+  id: Scalars['UUID']['output'];
+  title: Scalars['String']['output'];
+  video: Video;
+  viewerCnt: Scalars['Int']['output'];
+};
+
+export type LiveCreation = {
+  deviceId: Scalars['UUID']['input'];
+  liveTitle: Scalars['String']['input'];
+};
+
 export type Mutation = {
   __typename?: 'Mutation';
   createAccount: Account;
+  createIotDevice: IotDevice;
+  startLive: Live;
 };
 
 
@@ -288,12 +320,24 @@ export type MutationCreateAccountArgs = {
   creation: AccountCreation;
 };
 
+
+export type MutationCreateIotDeviceArgs = {
+  ownerId: Scalars['UUID']['input'];
+};
+
+
+export type MutationStartLiveArgs = {
+  creation?: InputMaybe<LiveCreation>;
+};
+
 export type Query = {
   __typename?: 'Query';
   _service: _Service;
   account?: Maybe<Account>;
   accounts?: Maybe<Account>;
-  accountsAll?: Maybe<Array<Account>>;
+  accountsAll: Array<Account>;
+  iotDevices: Array<IotDevice>;
+  videos: Array<Video>;
 };
 
 
@@ -304,6 +348,25 @@ export type QueryAccountArgs = {
 
 export type QueryAccountsArgs = {
   id?: InputMaybe<Scalars['Long']['input']>;
+};
+
+
+export type QueryIotDevicesArgs = {
+  ownerId?: InputMaybe<Scalars['UUID']['input']>;
+};
+
+
+export type QueryVideosArgs = {
+  deviceId?: InputMaybe<Scalars['UUID']['input']>;
+};
+
+export type Video = {
+  __typename?: 'Video';
+  createdAt: Scalars['DateTime']['output'];
+  device: IotDevice;
+  id: Scalars['UUID']['output'];
+  thumbnailUrl?: Maybe<Scalars['String']['output']>;
+  title: Scalars['String']['output'];
 };
 
 export type _Service = {
