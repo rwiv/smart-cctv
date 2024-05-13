@@ -1,1 +1,1 @@
-rootProject.name = "cctv-api"
+rootProject.name = "smart-cctv"
