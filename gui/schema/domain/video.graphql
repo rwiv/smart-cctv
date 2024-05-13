@@ -1,7 +1,0 @@
-type Video {
-  id: UUID!
-  device: IotDevice!
-  title: String!
-  thumbnailUrl: String
-  createdAt: DateTime!
-}
