@@ -1,5 +1,6 @@
 package com.github.smartcctv.domain.device.web
 
+import com.github.smartcctv.domain.account.business.data.AccountResponse
 import com.github.smartcctv.domain.device.business.IotDeviceService
 import com.github.smartcctv.domain.device.business.data.IotDeviceCreation
 import com.github.smartcctv.domain.device.persistence.IotDevice
@@ -7,6 +8,7 @@ import com.netflix.graphql.dgs.DgsComponent
 import com.netflix.graphql.dgs.DgsMutation
 import com.netflix.graphql.dgs.DgsQuery
 import com.netflix.graphql.dgs.InputArgument
+import org.springframework.security.core.Authentication
 import java.util.UUID
 
 @DgsComponent
@@ -20,7 +22,8 @@ class IotDeviceDataFetcher(
     }
 
     @DgsMutation
-    fun createIotDevice(creation: IotDeviceCreation): IotDevice {
-        return iotDeviceService.create(creation)
+    fun createIotDevice(creation: IotDeviceCreation, authentication: Authentication): IotDevice {
+        val accountResponse = authentication.details as AccountResponse
+        return iotDeviceService.create(creation, UUID.fromString(accountResponse.id))
     }
 }

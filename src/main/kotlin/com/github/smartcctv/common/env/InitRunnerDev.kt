@@ -36,8 +36,8 @@ class InitRunnerDev(
         val admin = users.find { it.role === AccountRole.ADMIN }
             ?: throw NotFoundException("not found admin account")
 
-        val d1 = iotDeviceService.create(IotDeviceCreation(admin.id!!, "device1"))
-        val d2 = iotDeviceService.create(IotDeviceCreation(admin.id!!, "device2"))
+        val d1 = iotDeviceService.create(IotDeviceCreation("device1"), admin.id!!)
+        val d2 = iotDeviceService.create(IotDeviceCreation("device2"), admin.id!!)
 
         val l1 = liveService.create(LiveCreation(d1.id!! ,"d1 live"))
         val l2 = liveService.create(LiveCreation(d2.id!! ,"d2 live"))

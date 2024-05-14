@@ -1,5 +1,6 @@
 package com.github.smartcctv.domain.device.business
 
+import com.github.smartcctv.common.error.exception.NotFoundException
 import com.github.smartcctv.domain.account.persistence.AccountRepository
 import com.github.smartcctv.domain.device.business.data.IotDeviceCreation
 import com.github.smartcctv.domain.device.persistence.IotDevice
@@ -13,8 +14,8 @@ class IotDeviceService(
     private val iotDeviceRepository: IotDeviceRepository,
 ) {
 
-    fun create(creation: IotDeviceCreation): IotDevice {
-        val owner = accountRepository.findByIdNotNull(creation.ownerId)
+    fun create(creation: IotDeviceCreation, ownerId: UUID): IotDevice {
+        val owner = accountRepository.findByIdNotNull(ownerId)
         return iotDeviceRepository.save(IotDevice(owner, creation.name))
     }
 
