@@ -8,12 +8,12 @@ import java.util.*
 import kotlin.jvm.optionals.getOrNull
 
 @Repository
-class IotDeviceRepositoryCustomImpl(em: EntityManager) : IotDeviceRepositoryCustom {
+class DeviceRepositoryCustomImpl(em: EntityManager) : DeviceRepositoryCustom {
 
-    private val repo = SimpleJpaRepository<IotDevice, UUID>(IotDevice::class.java, em)
+    private val repo = SimpleJpaRepository<Device, UUID>(Device::class.java, em)
 
-    override fun findByIdNotNull(id: UUID): IotDevice {
+    override fun findByIdNotNull(id: UUID): Device {
         return repo.findById(id).getOrNull()
-            ?: throw NotFoundException("not found iotDevice")
+            ?: throw NotFoundException("not found device")
     }
 }

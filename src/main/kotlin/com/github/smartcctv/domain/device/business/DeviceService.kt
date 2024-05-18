@@ -1,32 +1,34 @@
 package com.github.smartcctv.domain.device.business
 
 import com.github.smartcctv.domain.account.persistence.AccountRepository
-import com.github.smartcctv.domain.device.business.data.IotDeviceCreation
+import com.github.smartcctv.domain.device.business.data.DeviceCreation
 import com.github.smartcctv.domain.device.event.OnCreateDevice
-import com.github.smartcctv.domain.device.persistence.IotDevice
-import com.github.smartcctv.domain.device.persistence.IotDeviceRepository
+import com.github.smartcctv.domain.device.persistence.Device
+import com.github.smartcctv.domain.device.persistence.DeviceRepository
 import org.springframework.context.ApplicationEventPublisher
 import org.springframework.stereotype.Service
+import org.springframework.transaction.annotation.Transactional
 import java.util.UUID
 
 @Service
-class IotDeviceService(
+class DeviceService(
     private val accountRepository: AccountRepository,
-    private val iotDeviceRepository: IotDeviceRepository,
+    private val deviceRepository: DeviceRepository,
     private val publisher: ApplicationEventPublisher,
 ) {
 
-    fun create(creation: IotDeviceCreation, ownerId: UUID): IotDevice {
+    @Transactional
+    fun create(creation: DeviceCreation, ownerId: UUID): Device {
         val owner = accountRepository.findByIdNotNull(ownerId)
         val streamKey = UUID.randomUUID().toString()
-        val tbcDevice = IotDevice(owner, creation.name, streamKey)
-        return iotDeviceRepository.save(tbcDevice).also {
+        val tbcDevice = Device(owner, creation.name, streamKey)
+        return deviceRepository.save(tbcDevice).also {
             publisher.publishEvent(OnCreateDevice(it))
         }
     }
 
-    fun findByOwnerId(ownerId: UUID): List<IotDevice> {
+    fun findByOwnerId(ownerId: UUID): List<Device> {
         val owner = accountRepository.findByIdNotNull(ownerId)
-        return iotDeviceRepository.findByOwner(owner)
+        return deviceRepository.findByOwner(owner)
     }
 }

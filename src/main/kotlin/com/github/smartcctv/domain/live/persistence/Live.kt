@@ -1,7 +1,7 @@
 package com.github.smartcctv.domain.live.persistence
 
 import com.github.smartcctv.common.persistence.BaseEntity
-import com.github.smartcctv.domain.device.persistence.IotDevice
+import com.github.smartcctv.domain.device.persistence.Device
 import com.github.smartcctv.domain.video.peresistence.Video
 import jakarta.persistence.*
 import java.time.LocalDateTime
@@ -13,11 +13,11 @@ class Live(
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "iot_device_id", nullable = false)
-    val device: IotDevice,
+    val device: Device,
 
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "video_id", nullable = false)
-    val video: Video,
+    @JoinColumn(name = "video_id", nullable = true)
+    var video: Video?,
 
     @Column(nullable = false)
     val title: String,

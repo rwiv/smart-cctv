@@ -4,8 +4,8 @@ import com.github.smartcctv.domain.account.persistence.Account
 import org.springframework.data.jpa.repository.JpaRepository
 import java.util.UUID
 
-interface IotDeviceRepository : JpaRepository<IotDevice, UUID>, IotDeviceRepositoryCustom {
+interface DeviceRepository : JpaRepository<Device, UUID>, DeviceRepositoryCustom {
 
-    fun findByOwner(owner: Account): List<IotDevice>
-    fun findByStreamKey(streamKey: String): IotDevice?
+    fun findByOwner(owner: Account): List<Device>
+    fun findByStreamKey(streamKey: String): Device?
 }

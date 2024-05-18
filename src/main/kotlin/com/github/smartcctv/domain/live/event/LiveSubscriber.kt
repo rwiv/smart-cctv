@@ -12,6 +12,6 @@ class LiveSubscriber(
 
     @EventListener
     fun onCreateDevice(event: OnCreateDevice) {
-        liveService.createInitLive(event.device)
+        liveService.createLive(event.device)
     }
 }

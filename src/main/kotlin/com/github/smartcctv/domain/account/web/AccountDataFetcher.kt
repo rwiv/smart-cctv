@@ -4,8 +4,8 @@ import com.github.smartcctv.domain.account.business.AccountService
 import com.github.smartcctv.domain.account.business.data.AccountCreation
 import com.github.smartcctv.domain.account.business.data.AccountResponse
 import com.github.smartcctv.domain.account.persistence.Account
-import com.github.smartcctv.domain.device.persistence.IotDevice
-import com.github.smartcctv.domain.device.persistence.IotDeviceRepository
+import com.github.smartcctv.domain.device.persistence.Device
+import com.github.smartcctv.domain.device.persistence.DeviceRepository
 import com.netflix.graphql.dgs.*
 import org.springframework.security.core.Authentication
 import java.util.*
@@ -13,7 +13,7 @@ import java.util.*
 @DgsComponent
 class AccountDataFetcher(
     private val accountService: AccountService,
-    private val iotDeviceRepository: IotDeviceRepository,
+    private val deviceRepository: DeviceRepository,
 ) {
 
     @DgsQuery
@@ -44,8 +44,8 @@ class AccountDataFetcher(
     }
 
     @DgsData(parentType = "Account")
-    fun devices(dfe: DgsDataFetchingEnvironment): List<IotDevice> {
+    fun devices(dfe: DgsDataFetchingEnvironment): List<Device> {
         val account = dfe.getSource<Account>()
-        return iotDeviceRepository.findByOwner(account)
+        return deviceRepository.findByOwner(account)
     }
 }

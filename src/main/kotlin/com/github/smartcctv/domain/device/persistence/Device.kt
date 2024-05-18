@@ -7,8 +7,8 @@ import jakarta.persistence.*
 import java.util.*
 
 @Entity
-@Table(name = "iot_device")
-class IotDevice (
+@Table(name = "device")
+class Device (
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "account_id", nullable = false)
@@ -16,7 +16,6 @@ class IotDevice (
 
     @Column(nullable = false)
     val name: String,
-
 
     @Column(nullable = false, unique = true)
     var streamKey: String,

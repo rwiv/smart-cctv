@@ -1,5 +1,5 @@
 package com.github.smartcctv.domain.device.business.data
 
-data class IotDeviceCreation(
+data class DeviceCreation(
     val name: String,
 )

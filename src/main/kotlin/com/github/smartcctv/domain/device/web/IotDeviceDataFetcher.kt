@@ -1,9 +1,9 @@
 package com.github.smartcctv.domain.device.web
 
 import com.github.smartcctv.domain.account.business.data.AccountResponse
-import com.github.smartcctv.domain.device.business.IotDeviceService
-import com.github.smartcctv.domain.device.business.data.IotDeviceCreation
-import com.github.smartcctv.domain.device.persistence.IotDevice
+import com.github.smartcctv.domain.device.business.DeviceService
+import com.github.smartcctv.domain.device.business.data.DeviceCreation
+import com.github.smartcctv.domain.device.persistence.Device
 import com.netflix.graphql.dgs.DgsComponent
 import com.netflix.graphql.dgs.DgsMutation
 import com.netflix.graphql.dgs.DgsQuery
@@ -13,17 +13,17 @@ import java.util.UUID
 
 @DgsComponent
 class IotDeviceDataFetcher(
-    private val iotDeviceService: IotDeviceService,
+    private val deviceService: DeviceService,
 ) {
 
     @DgsQuery
-    fun iotDevices(@InputArgument ownerId: UUID): List<IotDevice> {
-        return iotDeviceService.findByOwnerId(ownerId)
+    fun iotDevices(@InputArgument ownerId: UUID): List<Device> {
+        return deviceService.findByOwnerId(ownerId)
     }
 
     @DgsMutation
-    fun createIotDevice(creation: IotDeviceCreation, authentication: Authentication): IotDevice {
+    fun createIotDevice(creation: DeviceCreation, authentication: Authentication): Device {
         val accountResponse = authentication.details as AccountResponse
-        return iotDeviceService.create(creation, UUID.fromString(accountResponse.id))
+        return deviceService.create(creation, UUID.fromString(accountResponse.id))
     }
 }
