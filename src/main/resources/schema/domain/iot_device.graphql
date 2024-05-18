@@ -9,11 +9,3 @@ type IotDevice {
 input IotDeviceCreation {
   name: String!
 }
-
-type Live {
-  id: UUID!
-  device: IotDevice!
-  video: Video!
-  title: String!
-  viewerCnt: Int!
-}

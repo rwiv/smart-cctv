@@ -7,4 +7,5 @@ import java.util.UUID
 interface IotDeviceRepository : JpaRepository<IotDevice, UUID>, IotDeviceRepositoryCustom {
 
     fun findByOwner(owner: Account): List<IotDevice>
+    fun findByStreamKey(streamKey: String): IotDevice?
 }
