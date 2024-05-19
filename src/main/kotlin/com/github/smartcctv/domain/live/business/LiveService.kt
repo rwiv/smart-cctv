@@ -24,7 +24,7 @@ class LiveService(
         val liveTitle = now.toString()
         val tbcLive = Live(device, null, liveTitle, true, 0, now)
         return liveRepository.save(tbcLive).also {
-            device.updateLive(it)
+            device.live = it
         }
     }
 

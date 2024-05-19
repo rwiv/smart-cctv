@@ -6,8 +6,7 @@ import java.util.UUID
 
 @Entity
 @Table(name = "account", indexes = [
-//    Index(name="idx_username", columnList="username", unique=true),
-    Index(name="idx_username", columnList="username"),
+    Index(name="idx_username", columnList="username", unique=true),
 ])
 class Account(
 

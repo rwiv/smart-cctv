@@ -7,7 +7,9 @@ import jakarta.persistence.*
 import java.util.*
 
 @Entity
-@Table(name = "device")
+@Table(name = "device", indexes = [
+    Index(name = "idx_stream_key", columnList = "stream_key"),
+])
 class Device (
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -25,9 +27,4 @@ class Device (
 
     @OneToOne(mappedBy = "device", cascade = [CascadeType.REMOVE])
     var live: Live? = null
-        protected set
-
-    fun updateLive(l: Live) {
-        live = l
-    }
 }

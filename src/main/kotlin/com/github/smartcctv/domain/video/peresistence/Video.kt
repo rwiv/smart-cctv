@@ -16,15 +16,8 @@ class Video(
     @Column(nullable = false)
     val title: String,
 
-    thumbnailUrl: String? = null,
-    id: UUID? = null,
-) : BaseTimeEntity(id) {
-
     @Column(nullable = true)
-    var thumbnailUrl: String? = thumbnailUrl
-        protected set
+    var thumbnailUrl: String? = null,
 
-    fun updateThumbnailUrl(url: String) {
-        thumbnailUrl = url
-    }
-}
+    id: UUID? = null,
+) : BaseTimeEntity(id)
