@@ -12,17 +12,17 @@ import org.springframework.security.core.Authentication
 import java.util.UUID
 
 @DgsComponent
-class IotDeviceDataFetcher(
+class DeviceDataFetcher(
     private val deviceService: DeviceService,
 ) {
 
     @DgsQuery
-    fun iotDevices(@InputArgument ownerId: UUID): List<Device> {
+    fun devices(@InputArgument ownerId: UUID): List<Device> {
         return deviceService.findByOwnerId(ownerId)
     }
 
     @DgsMutation
-    fun createIotDevice(creation: DeviceCreation, authentication: Authentication): Device {
+    fun createDevice(creation: DeviceCreation, authentication: Authentication): Device {
         val accountResponse = authentication.details as AccountResponse
         return deviceService.create(creation, UUID.fromString(accountResponse.id))
     }

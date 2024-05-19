@@ -12,7 +12,7 @@ import java.util.UUID
 class Live(
 
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "iot_device_id", nullable = false)
+    @JoinColumn(name = "device_id", nullable = false)
     val device: Device,
 
     @OneToOne(fetch = FetchType.LAZY)

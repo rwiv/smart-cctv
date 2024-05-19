@@ -1,7 +1,7 @@
 type Live {
   id: UUID!
-  device: IotDevice!
-  video: Video!
+  device: Device!
+  video: Video
   title: String!
   viewerCnt: Int!
 }

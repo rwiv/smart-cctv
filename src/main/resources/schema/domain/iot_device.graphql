@@ -1,11 +1,11 @@
-type IotDevice {
+type Device {
   id: UUID!
   owner: Account!
   name: String!
   live: Live
-  accessKey: String
+  streamKey: String!
 }
 
-input IotDeviceCreation {
+input DeviceCreation {
   name: String!
 }
