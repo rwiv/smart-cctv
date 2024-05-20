@@ -42,6 +42,7 @@ dependencies {
 	implementation("io.github.oshai:kotlin-logging-jvm:5.0.2")
 	implementation("com.netflix.graphql.dgs:graphql-dgs-spring-boot-starter")
 	implementation("com.graphql-java:graphql-java-extended-scalars:21.0")
+	implementation("org.eclipse.paho:org.eclipse.paho.client.mqttv3:1.2.5")
 
 	runtimeOnly("com.h2database:h2")
 	runtimeOnly("com.mysql:mysql-connector-j")
