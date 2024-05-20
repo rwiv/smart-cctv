@@ -1,6 +1,6 @@
 package com.github.smartcctv.domain.video.peresistence
 
-import com.github.smartcctv.common.error.exception.NotFoundException
+import com.github.smartcctv.utils.error.exception.NotFoundException
 import jakarta.persistence.EntityManager
 import org.springframework.data.jpa.repository.support.SimpleJpaRepository
 import org.springframework.stereotype.Repository

@@ -1,7 +1,7 @@
 package com.github.smartcctv.security.handlers
 
-import com.github.smartcctv.common.error.exception.HttpException
-import com.github.smartcctv.common.error.resolver.HttpErrorSender
+import com.github.smartcctv.utils.error.exception.HttpException
+import com.github.smartcctv.utils.error.resolver.HttpErrorSender
 import jakarta.servlet.http.HttpServletRequest
 import jakarta.servlet.http.HttpServletResponse
 import org.springframework.http.HttpStatus

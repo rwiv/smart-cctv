@@ -1,7 +1,7 @@
 package com.github.smartcctv.security.userdetails
 
 import com.github.smartcctv.domain.account.business.AccountService
-import com.github.smartcctv.common.error.exception.NotFoundException
+import com.github.smartcctv.utils.error.exception.NotFoundException
 import org.springframework.security.core.GrantedAuthority
 import org.springframework.security.core.authority.SimpleGrantedAuthority
 import org.springframework.security.core.userdetails.UserDetailsService

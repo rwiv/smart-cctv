@@ -1,6 +1,6 @@
 package com.github.smartcctv.domain.device.persistence
 
-import com.github.smartcctv.common.persistence.BaseTimeEntity
+import com.github.smartcctv.utils.persistence.BaseTimeEntity
 import com.github.smartcctv.domain.account.persistence.Account
 import com.github.smartcctv.domain.live.persistence.Live
 import jakarta.persistence.*

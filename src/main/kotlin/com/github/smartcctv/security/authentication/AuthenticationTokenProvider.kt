@@ -2,8 +2,8 @@ package com.github.smartcctv.security.authentication
 
 import com.github.smartcctv.domain.account.business.data.AccountResponse
 import com.github.smartcctv.domain.account.business.AccountService
-import com.github.smartcctv.common.error.exception.HttpException
-import com.github.smartcctv.common.error.exception.NotFoundException
+import com.github.smartcctv.utils.error.exception.HttpException
+import com.github.smartcctv.utils.error.exception.NotFoundException
 import com.github.smartcctv.security.userdetails.AccountDetails
 import com.github.smartcctv.security.userdetails.AccountDetailsService
 import org.springframework.security.authentication.AuthenticationProvider

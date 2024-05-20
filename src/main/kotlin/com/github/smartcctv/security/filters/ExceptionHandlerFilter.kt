@@ -1,7 +1,7 @@
 package com.github.smartcctv.security.filters
 
-import com.github.smartcctv.common.error.exception.HttpException
-import com.github.smartcctv.common.error.resolver.HttpErrorSender
+import com.github.smartcctv.utils.error.exception.HttpException
+import com.github.smartcctv.utils.error.resolver.HttpErrorSender
 import jakarta.servlet.FilterChain
 import jakarta.servlet.ServletRequest
 import jakarta.servlet.ServletResponse

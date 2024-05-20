@@ -1,6 +1,6 @@
 package com.github.smartcctv.domain.live.business
 
-import com.github.smartcctv.common.error.exception.NotFoundException
+import com.github.smartcctv.utils.error.exception.NotFoundException
 import com.github.smartcctv.domain.device.persistence.Device
 import com.github.smartcctv.domain.device.persistence.DeviceRepository
 import com.github.smartcctv.domain.live.persistence.Live

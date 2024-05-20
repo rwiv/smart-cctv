@@ -1,6 +1,6 @@
 package com.github.smartcctv.domain.account.persistence
 
-import com.github.smartcctv.common.persistence.BaseTimeEntity
+import com.github.smartcctv.utils.persistence.BaseTimeEntity
 import jakarta.persistence.*
 import java.util.UUID
 
