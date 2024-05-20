@@ -5,7 +5,7 @@ import kotlin.io.path.pathString
 
 object SecretUtil {
 
-    data class ServerSecret(val domainName: String);
+    data class ServerSecret(val domainName: String)
 
     fun getSecret(): ServerSecret {
         val root = Path.of(PathUtil.getRoot().pathString, "secret", "server.json")
