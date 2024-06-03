@@ -15,7 +15,7 @@ class CorsConfigurationStageProd : WebMvcConfigurer {
         registry
             .addMapping("/**")
             .allowCredentials(true)
-            .allowedOrigins(SecretUtil.getSecret().domainName)
+//            .allowedOrigins(SecretUtil.getSecret().domainName)
             .allowedMethods(CorsConfiguration.ALL)
             .allowedHeaders(CorsConfiguration.ALL)
     }

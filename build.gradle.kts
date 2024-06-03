@@ -27,7 +27,7 @@ repositories {
 
 dependencyManagement {
 	imports {
-		mavenBom("com.netflix.graphql.dgs:graphql-dgs-platform-dependencies:latest.release")
+		mavenBom("com.netflix.graphql.dgs:graphql-dgs-platform-dependencies:9.0.0")
 	}
 }
 
@@ -36,13 +36,14 @@ dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-security")
 	implementation("org.springframework.boot:spring-boot-starter-web")
 	implementation("org.springframework.boot:spring-boot-starter-websocket")
-	implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
 
+	implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.17.1")
 	implementation("io.github.oshai:kotlin-logging-jvm:5.0.2")
-	implementation("com.netflix.graphql.dgs:graphql-dgs-spring-boot-starter")
+	implementation("com.netflix.graphql.dgs:graphql-dgs-spring-boot-starter:9.0.0")
 	implementation("com.graphql-java:graphql-java-extended-scalars:21.0")
 	implementation("org.eclipse.paho:org.eclipse.paho.client.mqttv3:1.2.5")
+	implementation("org.springframework.boot:spring-boot-starter-mail:3.3.0")
 
 	runtimeOnly("com.h2database:h2")
 	runtimeOnly("com.mysql:mysql-connector-j")

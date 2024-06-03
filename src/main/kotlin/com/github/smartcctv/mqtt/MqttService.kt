@@ -1,9 +1,9 @@
 package com.github.smartcctv.mqtt
 
-import org.springframework.stereotype.Component
+import org.springframework.stereotype.Service
 
-@Component
-class MqttSubscribeManager {
+@Service
+class MqttService {
 
     fun subscribe(url: String, topic: String) {
         MqttSubscriber().subscribe(url, topic)

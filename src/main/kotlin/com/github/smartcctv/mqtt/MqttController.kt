@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RestController
 @RestController
 @RequestMapping("/rest/mqtt")
 class MqttController(
-    private val mqttSubscribeManager: MqttSubscribeManager,
+    private val mqttService: MqttService,
 ) {
 
     @GetMapping("/subscribe")
@@ -16,7 +16,7 @@ class MqttController(
         @RequestParam url: String,
         @RequestParam topic: String,
     ): String {
-        mqttSubscribeManager.subscribe(url, topic)
+        mqttService.subscribe(url, topic)
         println("subscribe complete!")
         return "subscribe complete!"
     }
