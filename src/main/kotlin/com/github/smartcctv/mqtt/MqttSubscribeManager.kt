@@ -5,7 +5,7 @@ import org.springframework.stereotype.Component
 @Component
 class MqttSubscribeManager {
 
-    init {
-        MqttSubscriber().subscribe()
+    fun subscribe(url: String, topic: String) {
+        MqttSubscriber().subscribe(url, topic)
     }
 }

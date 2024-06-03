@@ -8,12 +8,15 @@ import org.junit.jupiter.api.Test
 class MqttMessageTest {
 
     @Test fun test_publish_message() {
-        val client = MqttClient("tcp://localhost:1883", "aaa")
+
+        val topic = "detection"
+        val url = "tcp://localhost:1883"
+        val client = MqttClient(url, "aaa", null)
         client.connect()
 
         val message = MqttMessage()
         message.payload = "hello world".toByteArray()
-        client.publish("iot", message)
+        client.publish(topic, message)
 
         client.disconnect()
         client.close()

@@ -5,19 +5,19 @@ import org.eclipse.paho.client.mqttv3.*
 
 class MqttSubscriber : MqttCallback {
 
-    fun subscribe() {
+    fun subscribe(url: String, topic: String) {
         val mqttOptions = MqttConnectOptions()
         mqttOptions.isCleanSession = true
         mqttOptions.keepAliveInterval = 30
 
-        val mqttClient = MqttClient("tcp://localhost:1883", "bbb")
+        val mqttClient = MqttClient(url, "bbb", null)
 
         mqttClient.setCallback(this)
         mqttClient.connect(mqttOptions)
         // 0: 1회 전송, 유실될 수 있음
         // 1: 받을 때 까지 전송, n회 전송될 수 있음
         // 2: 1회 전송 보장, n회 전송 x
-        mqttClient.subscribe("iot", 0)
+        mqttClient.subscribe(topic, 2)
     }
 
     override fun connectionLost(throwable: Throwable) {
