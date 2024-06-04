@@ -1,4 +1,4 @@
-package com.github.smartcctv.common
+package com.github.smartcctv.common.dev
 
 import org.springframework.context.annotation.Profile
 import org.springframework.web.bind.annotation.GetMapping

@@ -1,4 +1,4 @@
-package com.github.smartcctv.address
+package com.github.smartcctv.common.address
 
 import org.springframework.stereotype.Component
 

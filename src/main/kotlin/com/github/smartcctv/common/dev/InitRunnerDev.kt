@@ -1,4 +1,4 @@
-package com.github.smartcctv.common
+package com.github.smartcctv.common.dev
 
 import com.github.smartcctv.utils.error.exception.NotFoundException
 import com.github.smartcctv.domain.account.business.AccountService

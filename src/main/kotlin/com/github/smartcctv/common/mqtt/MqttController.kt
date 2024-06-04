@@ -1,4 +1,4 @@
-package com.github.smartcctv.mqtt
+package com.github.smartcctv.common.mqtt
 
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RequestMapping

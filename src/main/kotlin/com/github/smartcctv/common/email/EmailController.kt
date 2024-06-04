@@ -1,4 +1,4 @@
-package com.github.smartcctv.email
+package com.github.smartcctv.common.email
 
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RequestMapping

@@ -1,4 +1,4 @@
-package com.github.smartcctv.email
+package com.github.smartcctv.common.email
 
 import org.springframework.mail.javamail.JavaMailSender
 import org.springframework.mail.javamail.JavaMailSenderImpl
