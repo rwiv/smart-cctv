@@ -28,6 +28,7 @@ class DefaultSecurityConfig(
 ) {
 
     val permitList = listOf(
+        "/",
         "/dev/**",
         "/rest/**",
         "/api/auth/signup",
@@ -35,6 +36,11 @@ class DefaultSecurityConfig(
         "/graphiql/**",
     )
     val ignoreList = listOf(
+        "/favicon.ico",
+        "/avatars/**",
+        "/dist/**",
+        "/assets/**",
+        "/vite.svg",
         "/avatars/**",
         "/h2-console/**"
     )
