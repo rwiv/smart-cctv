@@ -1,23 +1,25 @@
+FROM bitnami/git:2.45.2 as git
+WORKDIR /app
+RUN git clone https://github.com/rwiv/smart-cctv-front.git gui
+RUN git clone https://github.com/rwiv/smart-cctv.git server
+
 # gui build
 FROM node:21.7-alpine as nodejs
-WORKDIR /app
-# COPY . .
-RUN git clone https://github.com/rwiv/smart-cctv-front.git gui
+COPY --from=git /app/gui /app/gui
 WORKDIR /app/gui
-RUN npm i -g pnpm
-RUN pnpm i
-RUN pnpm build:prod
+RUN npm i
+RUN npm run build:prod
 
 # spring build
 FROM gradle:8.7.0-jdk21-alpine as grapdle
-WORKDIR /app
-COPY . .
-COPY --from=nodejs /app/gui/dist /app/src/main/resources/dist
+COPY --from=git /app/server /app/server
+COPY --from=nodejs /app/gui/dist /app/server/src/main/resources/dist
+WORKDIR /app/server
 RUN gradle build -x check --parallel
 
 # main
 FROM openjdk:23-slim
 WORKDIR /app
-COPY --from=grapdle /app/build/libs/clover-chat-server-0.0.1-SNAPSHOT.jar /app/app.jar
+COPY --from=grapdle /app/server/build/libs/smart-cctv-0.0.1-SNAPSHOT.jar /app/app.jar
 
 ENTRYPOINT ["java", "-jar", "app.jar"]

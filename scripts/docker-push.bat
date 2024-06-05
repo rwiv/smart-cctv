@@ -1,7 +1,6 @@
-docker tag chat-server:latest ewr.vultrcr.com/fjdndkv/chat-server:latest
-docker push ewr.vultrcr.com/fjdndkv/chat-server:latest
+docker tag smart-cctv:latest ghcr.io/rwiv/smart-cctv:latest
+docker push ghcr.io/rwiv/smart-cctv:latest
 
-docker rmi chat-server:latest
-docker rmi ewr.vultrcr.com/fjdndkv/chat-server:latest
+docker rmi ghcr.io/rwiv/smart-cctv:latest
 
 pause
