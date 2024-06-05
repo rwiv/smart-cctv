@@ -1,26 +1,24 @@
 package com.github.smartcctv.common.dev
 
-import com.github.smartcctv.utils.error.exception.NotFoundException
+import com.github.smartcctv.common.secret.SecretProperties
 import com.github.smartcctv.domain.account.business.AccountService
 import com.github.smartcctv.domain.account.business.data.AccountCreation
 import com.github.smartcctv.domain.account.persistence.Account
 import com.github.smartcctv.domain.account.persistence.AccountRole
 import com.github.smartcctv.domain.device.business.DeviceService
-import com.github.smartcctv.domain.device.business.data.DeviceCreation
 import com.github.smartcctv.domain.device.persistence.DeviceRepository
 import com.github.smartcctv.domain.video.peresistence.VideoRepository
 import org.springframework.boot.ApplicationArguments
 import org.springframework.boot.ApplicationRunner
-import org.springframework.context.annotation.Profile
 import org.springframework.stereotype.Component
 
 @Component
-@Profile("dev")
-class InitRunnerDev(
+class InitRunner(
     private val accountService: AccountService,
     private val deviceService: DeviceService,
     private val videoRepository: VideoRepository,
     private val deviceRepository: DeviceRepository,
+    private  val secretProperties: SecretProperties,
 ) : ApplicationRunner {
 
     override fun run(args: ApplicationArguments?) {
@@ -30,16 +28,16 @@ class InitRunnerDev(
 
         val users = ArrayList<Account>()
         users.add(createAdmin())
-        users.addAll(createUsers(1, 5))
-
-        val admin = users.find { it.role === AccountRole.ADMIN }
-            ?: throw NotFoundException("not found admin account")
-
-        val d1 = deviceService.create(DeviceCreation("device1"), admin.id!!)
-        d1.streamKey = "hello"
-        deviceRepository.save(d1)
-
-        val d2 = deviceService.create(DeviceCreation("device2"), admin.id!!)
+//        users.addAll(createUsers(1, 5))
+//
+//        val admin = users.find { it.role === AccountRole.ADMIN }
+//            ?: throw NotFoundException("not found admin account")
+//
+//        val d1 = deviceService.create(DeviceCreation("device1"), admin.id!!)
+//        d1.streamKey = "hello"
+//        deviceRepository.save(d1)
+//
+//        val d2 = deviceService.create(DeviceCreation("device2"), admin.id!!)
 
 //        val v1 = d1.live?.video ?: throw NotFoundException("not found video")
 //        // https://picsum.photos/320/180
@@ -60,8 +58,8 @@ class InitRunnerDev(
     private fun createAdmin(): Account {
         val creation = AccountCreation(
             AccountRole.ADMIN,
-            "admin",
-            "admin",
+            secretProperties.adminUsername,
+            secretProperties.adminPassword,
             "admin",
         )
         return accountService.create(creation)

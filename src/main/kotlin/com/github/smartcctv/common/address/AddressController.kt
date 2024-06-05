@@ -11,25 +11,25 @@ class AddressController(
     private val addressStore: AddressStore,
 ) {
 
-    @GetMapping("/set/api")
-    fun setApiAddress(@RequestParam address: String): String {
-        addressStore.apiAddress = address
+    @GetMapping("/set/cam-api")
+    fun setCamApiAddress(@RequestParam address: String): String {
+        addressStore.camApi = address
         return address
     }
 
-    @GetMapping("/set/cam")
-    fun setCamAddress(@RequestParam address: String): String {
-        addressStore.camAddress = address
+    @GetMapping("/set/cam-nginx")
+    fun setCamNginxAddress(@RequestParam address: String): String {
+        addressStore.camNginx = address
         return address
     }
 
-    @GetMapping("/get/api")
-    fun getApiAddress(@RequestParam address: String): String {
-        return addressStore.apiAddress
+    @GetMapping("/get/cam-api")
+    fun getCamApiAddress(): String {
+        return addressStore.camApi
     }
 
-    @GetMapping("/get/cam")
-    fun getCamAddress(@RequestParam address: String): String {
-        return addressStore.camAddress
+    @GetMapping("/get/cam-nginx")
+    fun getCamNginxAddress(): String {
+        return addressStore.camNginx
     }
 }
